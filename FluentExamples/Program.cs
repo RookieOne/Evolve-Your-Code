@@ -75,5 +75,32 @@ namespace FluentExamples
             foreach (var b in selectedBooks2)
                 Console.WriteLine(b);
         }
+
+        public static void LawOfDemeter()
+        {
+
+            var myA = new A();
+
+            myA.ChildB.DoStuff();
+
+            myA.DoStuffOnChild();
+
+
+        }
+
+        public static void Builders()
+        {
+            var endersGame = FluentBook.Create()
+                .Titled("Enders Game")
+                .WrittenBy("Orson Scott Card");
+
+            var endersShadow = BookBuilder.NewBook()
+                .Titled("Enders Shadow")
+                .WrittenBy("Orson Scott Card")
+                .Create();
+
+            Console.WriteLine(endersGame);
+            Console.WriteLine(endersShadow);
+        }
     }
 }
