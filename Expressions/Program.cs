@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq.Expressions;
+using System.Reflection;
 
 namespace Expressions
 {
@@ -16,10 +17,51 @@ namespace Expressions
 
             int result = expression.Compile().Invoke();
             Console.WriteLine("Result {0}", result); // is 2
+            
 
+            Expression<Func<Book, object>> e = b => b.Author;
+
+            string propertyName = GetPropertyName(e);
+            
+            Console.WriteLine("Property Name is {0}", propertyName);
+
+            var bookParameter = Expression.Parameter(typeof (Book), "book");
+            var memberAccess = Expression.MakeMemberAccess(bookParameter, typeof (Book).GetMember("Author")[0]);
+
+            var handMade = Expression.Lambda<Func<Book, object>>(memberAccess, 
+                                                                 new ParameterExpression[] { bookParameter });
+
+            propertyName = GetPropertyName(handMade);
+
+            Console.WriteLine("Property Name is {0}", propertyName);
 
             Console.WriteLine("Done");
             Console.ReadLine();
+        }
+
+        
+
+        private static string GetPropertyName(LambdaExpression lambdaExpression)
+        {
+            Expression e = lambdaExpression;
+
+            while (true)
+            {
+                switch (e.NodeType)
+                {
+                    case ExpressionType.Lambda:
+                        e = ((LambdaExpression)e).Body;
+                        break;
+                    case ExpressionType.MemberAccess:
+                        var propertyInfo = ((MemberExpression)e).Member as PropertyInfo;
+
+                        return propertyInfo != null
+                                   ? propertyInfo.Name
+                                   : string.Empty;
+                    default:
+                        return string.Empty;
+                }
+            }
         }
     }
 }

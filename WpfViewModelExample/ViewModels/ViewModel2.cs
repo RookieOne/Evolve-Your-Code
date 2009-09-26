@@ -27,9 +27,7 @@ namespace WpfViewModelExample.ViewModels
         {
             Expression e = lambdaExpression;
 
-            bool done = false;
-
-            while (!done)
+            while (true)
             {
                 switch (e.NodeType)
                 {
@@ -48,12 +46,9 @@ namespace WpfViewModelExample.ViewModels
                                    : string.Empty;
 
                     default:
-                        done = true;
-                        break;
+                        return string.Empty;
                 }
             }
-
-            return string.Empty;
         }
 
         protected void OnPropertyChanged<T>(T viewModel, Expression<Func<T, object>> expr)

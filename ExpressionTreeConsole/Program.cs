@@ -30,6 +30,9 @@ namespace ExpressionTreeConsole
             // false
             bool f = func.Invoke(7);
 
+            ConsoleVisitor.WriteToConsole(lambda);
+            
+
 
             var books = Builder<Book>.CreateListOfSize(50)
                 .Build().AsQueryable();

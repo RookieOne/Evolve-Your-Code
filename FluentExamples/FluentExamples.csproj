@@ -53,6 +53,7 @@
     <Compile Include="Add.cs" />
     <Compile Include="Book.cs" />
     <Compile Include="BookBuilder.cs" />
+    <Compile Include="BookList.cs" />
     <Compile Include="FluentBook.cs" />
     <Compile Include="LawOfDemeterObjects.cs" />
     <Compile Include="Program.cs" />

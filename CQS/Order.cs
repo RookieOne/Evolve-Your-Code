@@ -7,11 +7,6 @@ namespace CQS
 {
     public class Order
     {
-        private double _total
-
-        public double GetTotal()
-        {
-            
-        }
+ 
     }
 }

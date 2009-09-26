@@ -12,7 +12,7 @@ namespace WpfViewModelExample.ViewModels
             set
             {
                 _text = value;
-                OnPropertyChanged("Text");
+                OnPropertyChanged("Textt");
             }
         }
 

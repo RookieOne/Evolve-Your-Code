@@ -102,5 +102,21 @@ namespace FluentExamples
             Console.WriteLine(endersGame);
             Console.WriteLine(endersShadow);
         }
+
+        public static void MethodChaining()
+        {
+            var menAtArms = new Book {Title = "Men at Arms", Author = "Terry Pratchett"};
+            var smallGods = new Book {Title = "Small Gods", Author = "Terry Pratchett"};
+
+            var books = new BookList();
+
+            books.Add(menAtArms);
+            books.Add(smallGods);
+            books.Sort();
+
+            books.Add(menAtArms)
+                .Add(smallGods)
+                .Sort();
+        }
     }
 }
