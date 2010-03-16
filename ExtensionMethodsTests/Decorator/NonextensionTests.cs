@@ -32,7 +32,7 @@ namespace ExtensionMethodsTests.Decorator
         public void dark_roast_with_sugar_and_milk()
         {
             var darkRoast = new SugarDecorator(new MilkDecorator(new DarkRoast()));
-            darkRoast.GetPrice().ShouldBe(7.2m);
+            darkRoast.GetPrice().ShouldBe(7.7m);
         }
     }
 }
